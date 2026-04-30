@@ -1,0 +1,113 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>VANOTATTOO</title>
+
+<link href="https://fonts.googleapis.com/css2?family=Oswald:wght@300;500;700&display=swap" rel="stylesheet">
+
+<style>
+* {margin:0;padding:0;box-sizing:border-box;}
+body {font-family:'Oswald',sans-serif;background:#0d0d0d;color:#fff;scroll-behavior:smooth;}
+section {padding:80px 20px;max-width:1100px;margin:auto;}
+h1,h2 {text-transform:uppercase;letter-spacing:2px;}
+h2 {margin-bottom:20px;}
+
+.hero {height:100vh;background:url('https://images.unsplash.com/photo-1542728928-1413d1894ed1') center/cover no-repeat;display:flex;align-items:center;justify-content:center;text-align:center;}
+.hero-overlay {background:rgba(0,0,0,0.7);padding:40px;}
+.hero h1 {font-size:60px;}
+.hero p {margin:20px 0;font-size:20px;}
+
+.btn {display:inline-block;padding:12px 30px;background:#e63946;color:#fff;text-decoration:none;transition:0.3s;}
+.btn:hover {background:#fff;color:#000;}
+
+.about p {line-height:1.6;opacity:0.8;}
+
+.gallery {display:grid;grid-template-columns:repeat(auto-fit,minmax(250px,1fr));gap:15px;}
+.gallery img {width:100%;cursor:pointer;transition:0.3s;}
+.gallery img:hover {transform:scale(1.05);}
+
+.modal {display:none;position:fixed;top:0;left:0;width:100%;height:100%;background:rgba(0,0,0,0.9);justify-content:center;align-items:center;}
+.modal img {max-width:90%;max-height:80%;}
+
+.services ul {list-style:none;}
+.services li {margin:10px 0;}
+
+.contacts a {color:#e63946;text-decoration:none;display:block;margin:10px 0;}
+
+footer {text-align:center;padding:20px;background:#111;font-size:14px;}
+
+.hidden {opacity:0;transform:translateY(40px);transition:all 0.6s;}
+.show {opacity:1;transform:translateY(0);}
+</style>
+</head>
+
+<body>
+
+<section class="hero">
+<div class="hero-overlay">
+<h1>VANOTATTOO</h1>
+<p>Татуировки с характером</p>
+<a href="#contacts" class="btn">Записаться</a>
+</div>
+</section>
+
+<section class="about hidden">
+<h2>О мастере</h2>
+<p>Я тату-мастер VANOTATTOO. Работаю в стилях blackwork, realism и графика. Создаю уникальные эскизы и помогаю воплотить идеи в татуировке.</p>
+</section>
+
+<section class="portfolio hidden">
+<h2>Портфолио</h2>
+<div class="gallery">
+<img src="https://images.unsplash.com/photo-1598373182133-52452f7691ef" onclick="openModal(this.src)">
+<img src="https://images.unsplash.com/photo-1600180758890-6b94519a8ba6" onclick="openModal(this.src)">
+<img src="https://images.unsplash.com/photo-1581291518857-4e27b48ff24e" onclick="openModal(this.src)">
+</div>
+</section>
+
+<section class="services hidden">
+<h2>Услуги</h2>
+<ul>
+<li>Разработка индивидуального эскиза</li>
+<li>Татуировка любой сложности</li>
+<li>Коррекция и перекрытие</li>
+</ul>
+</section>
+
+<section id="contacts" class="contacts hidden">
+<h2>Контакты</h2>
+<a href="tel:0637922635">📞 0637922635</a>
+<a href="#">Instagram</a>
+<a href="#">Telegram</a>
+<a href="#" class="btn">Написать</a>
+</section>
+
+<footer>© VANOTATTOO</footer>
+
+<div class="modal" id="modal" onclick="closeModal()">
+<img id="modal-img">
+</div>
+
+<script>
+function openModal(src){
+document.getElementById('modal').style.display='flex';
+document.getElementById('modal-img').src=src;
+}
+function closeModal(){
+document.getElementById('modal').style.display='none';
+}
+
+const observer=new IntersectionObserver(entries=>{
+entries.forEach(entry=>{
+if(entry.isIntersecting){
+entry.target.classList.add('show');
+}
+});
+});
+document.querySelectorAll('.hidden').forEach(el=>observer.observe(el));
+</script>
+
+</body>
+</html>
